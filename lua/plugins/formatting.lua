@@ -13,7 +13,7 @@ return { -- Autoformat
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
@@ -34,6 +34,9 @@ return { -- Autoformat
       -- css = { 'stylelint' },
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
+      php = { 'phpcbf', 'pretty-php' },
+      javascript = { 'prettierd', 'prettier' },
+      -- javascript = { 'prettier' },
     },
   },
 }

@@ -154,10 +154,17 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Tab as 2 spaces https://stackoverflow.com/a/76525818
-vim.opt.tabstop = 8 -- Always 8 (see :h tabstop)
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+-- tab as 2 spaces https://www.reddit.com/r/neovim/comments/vxqt95/comment/ifxnzz2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+vim.o.autoindent = true
+vim.o.ts = 2
+vim.o.sw = 2
+vim.o.expandtab = true
+-- vim.opt.tabstop = 2
+-- vim.opt.shiftwidth = 2
+-- vim.opt.expandtab = true
+-- vim.wo.expandtab = true
+-- vim.bo.expandtab = true
+-- vim.bo.softtabstop = 2
 
 -- -- [[ Basic Keymaps ]]
 -- --  See `:help vim.keymap.set()`
@@ -166,8 +173,6 @@ vim.opt.shiftwidth = 2
 -- vim.opt.hlsearch = true
 -- vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 --
--- -- Diagnostic keymaps
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 --
 -- -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -237,3 +242,6 @@ require('lazy').setup 'plugins'
 vim.api.nvim_command 'runtime lua/*.lua'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Netrw liststyle 3 is tree
+vim.cmd [[let g:netrw_liststyle=3]]
