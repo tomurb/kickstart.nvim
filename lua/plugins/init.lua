@@ -79,6 +79,12 @@ return {
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
+  {
+    'jemag/telescope-diff.nvim',
+    dependencies = {
+      { 'nvim-telescope/telescope.nvim' },
+    },
+  },
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
@@ -128,17 +134,33 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
+      local lga_actions = require 'telescope-live-grep-args.actions'
+
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-enter>'] = 'to_fuzzy_refine',
+              ['<C-j>'] = actions.send_selected_to_qflist + actions.open_qflist,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
+          live_grep_args = {
+            mappings = { -- extend mappings
+              i = {
+                ['<C-k>'] = lga_actions.quote_prompt(),
+                ['<C-i>'] = lga_actions.quote_prompt { postfix = ' --iglob ' },
+                -- freeze the current list and start a fuzzy search in the frozen list
+                ['<C-space>'] = lga_actions.to_fuzzy_refine,
+              },
+            },
+          },
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
@@ -149,6 +171,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'live_grep_args')
+      pcall(require('telescope').load_extension 'diff')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -164,6 +187,14 @@ return {
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      -- telescope-diff keympaps
+      vim.keymap.set('n', '<leader>i2', function()
+        require('telescope').extensions.diff.diff_files { hidden = true }
+      end, { desc = 'Compare 2 files' })
+      vim.keymap.set('n', '<leader>ic', function()
+        require('telescope').extensions.diff.diff_current { hidden = true }
+      end, { desc = 'Compare file with current' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -189,7 +220,39 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
+  { -- indentation guides
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+    config = function()
+      local highlight = {
+        'RainbowRed',
+        'RainbowYellow',
+        'RainbowBlue',
+        'RainbowOrange',
+        'RainbowGreen',
+        'RainbowViolet',
+        'RainbowCyan',
+      }
 
+      local hooks = require 'ibl.hooks'
+      -- create the highlight groups in the highlight setup hook, so they are reset
+      -- every time the colorscheme changes
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, 'RainbowRed', { fg = '#E06C75' })
+        vim.api.nvim_set_hl(0, 'RainbowYellow', { fg = '#E5C07B' })
+        vim.api.nvim_set_hl(0, 'RainbowBlue', { fg = '#61AFEF' })
+        vim.api.nvim_set_hl(0, 'RainbowOrange', { fg = '#D19A66' })
+        vim.api.nvim_set_hl(0, 'RainbowGreen', { fg = '#98C379' })
+        vim.api.nvim_set_hl(0, 'RainbowViolet', { fg = '#C678DD' })
+        vim.api.nvim_set_hl(0, 'RainbowCyan', { fg = '#56B6C2' })
+      end)
+
+      require('ibl').setup { indent = { highlight = highlight } }
+    end,
+  },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -260,7 +323,7 @@ return {
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  require 'kickstart.plugins.lint',
+  -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
