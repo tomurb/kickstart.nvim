@@ -35,7 +35,7 @@ return { -- Autoformat
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
       php = { 'phpcbf', 'pretty-php' },
-      javascript = { 'prettierd', 'prettier' },
+      -- javascript = { 'prettierd', 'prettier' },
       -- javascript = { 'prettier' },
     },
   },
