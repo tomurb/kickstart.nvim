@@ -32,6 +32,7 @@ return { -- Autoformat
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
       -- css = { 'stylelint' },
+      ruby = { lsp_format = 'fallback' },
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
       php = { 'phpcbf', 'pretty-php' },

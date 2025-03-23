@@ -174,10 +174,10 @@ return { -- LSP Configuration & Plugins
       -- tsserver = {},
       --
 
-      stimulus_ls = {},
+      -- stimulus_ls = {},
       stylelint_lsp = {},
       eslint = {},
-      ruby_lsp = {},
+      solargraph = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
