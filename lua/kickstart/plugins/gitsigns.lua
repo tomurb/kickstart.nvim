@@ -55,6 +55,13 @@ return {
         -- Toggles
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+        vim.api.nvim_buf_create_user_command(bufnr, 'Test', function()
+          -- iterate over gitsigns.get_hunks
+          -- hunk[type] = add/change/delete
+          -- hunk[added][start]..(hunk[added][start] + hunk[added][count])
+          -- conform.format({range = { start = hunk[added][start], end = (hunk[added][start] + hunk[added][count])}})
+          vim.print(gitsigns.get_hunks(bufnr))
+        end, {})
       end,
     },
   },
