@@ -11,6 +11,14 @@ return { -- Autoformat
       mode = '',
       desc = '[F]ormat buffer',
     },
+    {
+      '<Leader>hf',
+      function()
+        require('custom/plugins/format-hunks').format_hunks()
+      end,
+      mode = 'n',
+      desc = '[H]unks [F]ormat'
+    }
   },
   opts = {
     notify_on_error = true,
@@ -22,12 +30,16 @@ return { -- Autoformat
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
       -- css = { 'stylelint' },
-      ruby = { lsp_format = 'fallback' },
+      ruby = { 'standardrb', lsp_fallback = true },
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
       php = { 'phpcbf', 'pretty-php' },
       -- javascript = { 'prettierd', 'prettier' },
       -- javascript = { 'prettier' },
     },
+    formatters = {
+      standardrb = {
+        command = "/Users/tomasz/.rbenv/shims/standardrb",
+      }
   },
 }
