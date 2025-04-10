@@ -24,22 +24,14 @@ return { -- Autoformat
     notify_on_error = true,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      -- css = { 'stylelint' },
       ruby = { 'standardrb', lsp_fallback = true },
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
-      php = { 'phpcbf', 'pretty-php' },
-      -- javascript = { 'prettierd', 'prettier' },
-      -- javascript = { 'prettier' },
     },
     formatters = {
       standardrb = {
         command = "/Users/tomasz/.rbenv/shims/standardrb",
       }
+    }
   },
 }
