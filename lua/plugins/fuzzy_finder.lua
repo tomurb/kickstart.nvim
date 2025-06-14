@@ -113,7 +113,7 @@ return {
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
-      vim.keymap.set('n', '<space>FB', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [B]rowser' })
+      vim.keymap.set('n', '<space>Fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [b]rowser' })
 
       -- telescope-diff keympaps
       vim.keymap.set('n', '<leader>i2', function()
