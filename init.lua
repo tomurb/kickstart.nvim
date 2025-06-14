@@ -197,8 +197,6 @@ vim.keymap.set('t', '<C-/>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 -- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 -- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 --
--- -- Custom
--- vim.keymap.set('n', '<Tab>', '<C-w>gTab', { desc = 'Go to the last accessed tab page' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
