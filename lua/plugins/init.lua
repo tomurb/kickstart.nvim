@@ -156,7 +156,14 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
 
-      require('treesitter-context').setup()
+      -- shows the context of the currently visible buffer contents
+      require('treesitter-context').setup(
+        {
+          trim_scope = 'inner',
+          max_lines = 10,
+          mode = 'topline'
+        }
+      )
 
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
