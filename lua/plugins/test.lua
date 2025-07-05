@@ -14,6 +14,9 @@ return {
         },
       },
     }
+    vim.cmd([[
+      hi NeotestPassed ctermfg=Green guifg=#0a9900
+    ]])
   end,
   keys = {
     { '<leader>n', '', desc = '+test' },
@@ -24,7 +27,7 @@ return {
     { '<leader>nu', "<cmd>lua require('neotest').summary.toggle()<CR>", desc = 'Toggle Summary' },
     { '<leader>no', "<cmd>lua require('neotest').output.open({ enter = true, auto_close = true })<CR>", desc = 'Show Output' },
     { '<leader>np', "<cmd>lua require('neotest').output_panel.toggle()<CR>", desc = 'Toggle Output [P]anel' },
-    { "<leader>nS", function() require("neotest").run.stop() end, desc = "Stop" },
+    -- { "<leader>nS", function() require("neotest").run.stop() end, desc = "Stop" },
     -- { "<leader>nw", function() require("neotest").watch.toggle(vim.fn.expand("%")) end, desc = "Toggle Watch" },
   },
 }
