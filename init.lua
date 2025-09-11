@@ -237,14 +237,11 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup 'plugins'
 
-
--- To get telescope-file-browser loaded and working with telescope,
--- you need to call load_extension, somewhere after setup function:
-require("telescope").load_extension "file_browser"
-
 vim.api.nvim_command 'runtime lua/*.lua'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
 -- Netrw liststyle 3 is tree
 vim.cmd [[let g:netrw_liststyle=3]]
+
+-- require("oil").setup()
