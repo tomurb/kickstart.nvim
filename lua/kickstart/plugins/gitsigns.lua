@@ -14,6 +14,7 @@ return {
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
+        vim.cmd.hi 'GitSignsCurrentLineBlame  guifg=#724A48'
 
         -- Navigation
         map('n', ']c', function()

@@ -122,7 +122,10 @@ return {
     init = function()
       vim.o.background = 'light'
       vim.cmd.colorscheme 'solarized'
-      vim.cmd.hi 'GitSignsCurrentLineBlame guifg=#ffffff'
+      vim.cmd.hi 'Visual guifg=#000000'
+      vim.cmd.hi 'QuickFixLine guifg=#000000'
+      vim.cmd.hi 'CursorLine guibg=#e2ded0'
+      vim.cmd.hi 'Search guibg=white'
 
       -- You can configure highlights by doing something like:
       -- vim.cmd.hi 'Comment gui=none'
@@ -221,10 +224,6 @@ return {
       }
     end,
   },
-
-  { -- add folding of code blocks
-    'kevinhwang91/nvim-ufo'
-  }
 
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
