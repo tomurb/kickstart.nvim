@@ -22,6 +22,10 @@ return {
     --   --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     -- },
   },
+  rules = {
+    project_dir = '.avante/rules',  -- Project-specific templates
+    global_dir = '~/.config/nvim/lua/plugins/avante_rules/',  -- Global templates
+  },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
