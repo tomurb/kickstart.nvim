@@ -24,9 +24,11 @@ return { -- Autoformat
     notify_on_error = true,
     formatters_by_ft = {
       lua = { 'stylua' },
-      ruby = { 'standardrb', lsp_fallback = true },
+      ruby = { 'standardrb', 'rubocop', lsp_fallback = true },
       css = { 'prettierd' },
       html = { 'prettierd', 'erb-formatter' },
+      xml = { 'xmlformatter' },
+      json = { 'prettierd' },
     },
     formatters = {
       standardrb = {
