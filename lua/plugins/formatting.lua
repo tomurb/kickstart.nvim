@@ -32,7 +32,7 @@ return { -- Autoformat
     },
     formatters = {
       standardrb = {
-        command = "/Users/tomasz/.rbenv/shims/standardrb",
+        command = "~/.rbenv/shims/standardrb",
       }
     }
   },

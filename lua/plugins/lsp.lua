@@ -177,7 +177,7 @@ return { -- LSP Configuration & Plugins
       -- stimulus_ls = {},
       stylelint_lsp = {},
       standardrb = {
-        cmd = { "/Users/tomasz/.rbenv/shims/standardrb", "--lsp" },
+        cmd = { "~/.rbenv/shims/standardrb", "--lsp" },
       },
       eslint = {},
       lua_ls = {
