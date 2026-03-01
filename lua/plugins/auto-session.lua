@@ -2,6 +2,13 @@ return {
   'rmagatti/auto-session',
   lazy = false,
 
+  keys = {
+    -- Will use Telescope if installed or a vim.ui.select picker otherwise
+    { "<leader>wr", "<cmd>AutoSession search<CR>", desc = "Session search" },
+    { "<leader>ws", "<cmd>AutoSession save<CR>", desc = "Save session" },
+    { "<leader>wa", "<cmd>AutoSession toggle<CR>", desc = "Toggle autosave" },
+  },
+
   ---enables autocomplete for opts
   ---@module "auto-session"
   ---@type AutoSession.Config
@@ -52,7 +59,7 @@ return {
 
     ---@type SessionLens
     session_lens = {
-      picker = nil, -- "telescope"|"snacks"|"fzf"|"select"|nil Pickers are detected automatically but you can also set one manually. Falls back to vim.ui.select
+      picker = 'telescope', -- "telescope"|"snacks"|"fzf"|"select"|nil Pickers are detected automatically but you can also set one manually. Falls back to vim.ui.select
       load_on_setup = true, -- Only used for telescope, registers the telescope extension at startup so you can use :Telescope session-lens
       picker_opts = nil, -- Table passed to Telescope / Snacks / Fzf-Lua to configure the picker. See below for more information
 
